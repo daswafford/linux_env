@@ -1,9 +1,14 @@
-" pathogen to autoload bundles
-let g:pathogen_disabled = ['pathogen']    " don't load self
-call pathogen#infect()                      " load everything else
-call pathogen#helptags()                    " load plugin help files
-let g:syntastic_enable_signs=1
-let g:syntastic_auto_jump=1
+execute pathogen#infect()
+" Begin Syntastic Settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+" End Syntastic Settings
 
 " syntax highlighting
 syntax on
@@ -37,11 +42,3 @@ set shortmess+=I
 
 "Highlight 80 char lines
 match Error /\%81v.\+/
-
-autocmd! BufNewFile * silent! 0r ~/.vim/tmpl/tmpl.%:e
-autocmd BufNewFile,BufRead *.tw set filetype=python
-autocmd BufNewFile,BufRead *.cconf set filetype=python
-autocmd BufNewFile,BufRead *.cinc set filetype=python
-autocmd BufNewFile,BufRead *.ctest set filetype=python
-autocmd BufNewFile,BufRead *.thrift set filetype=c
-autocmd BufNewFile,BufRead *.thrift-cvalidator set filetype=python
